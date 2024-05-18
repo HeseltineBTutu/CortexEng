@@ -5,15 +5,17 @@
 3. [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
-4. [Usage](#usage)
-5. [API Endpoints](#api-endpoints)
+4. [Architecture](#architecture)
+5. [Technologies](#technologies)
+6. [Usage](#usage)
+7. [API Endpoints](#api-endpoints)
     - [/recommendations](#recommendations)
     - [Potential Future Endpoints](#potential-future-endpoints)
-6. [Testing](#testing)
-7. [Project Structure](#project-structure)
-8. [Contributing](#contributing)
-9. [License](#license)
-10. [Contact](#contact)
+8. [Testing](#testing)
+9. [Project Structure](#project-structure)
+10. [Contributing](#contributing)
+11. [License](#license)
+12. [Contact](#contact)
 
 ## Overview
 CortexEng is an intelligent recommendation engine that leverages machine learning and collaborative filtering techniques to provide personalized recommendations for users. The core goal of the project is to solve the problem of information overload by surfacing highly relevant content, products, or experiences tailored to individual preferences and behaviors.
@@ -54,6 +56,21 @@ These instructions will help you set up and run the CortexEng recommendation sys
     pip install -r requirements.txt
     ```
 
+4. **Architecture**
+   CortexEng follows a modular architecture, consisting of the following components:
+   - API: A RESTful API built with Flask for handling client requests and serving recommendations.
+   - Recommendation Engine: The core component responsible for generating personalized recommendations using collaborative filtering algorithms.
+   - Data Storage: A flexible storage solution (e.g., PostgreSQL, MongoDB) for storing user interactions and item metadata.
+   - Evaluation Module: A module for evaluating the performance of the recommendation algorithms and guiding continuous improvement.
+     For more information, check out the Architecture Documentation.
+5. **Technologies**
+   CortexEng is built using the following technologies:
+   - Python: The primary programming language, chosen for its rich data science ecosystem and ease of prototyping.
+   - NumPy, Pandas, Scikit-learn: Essential libraries for numerical computations, data manipulation, and machine learning algorithms.
+   - Flask: A lightweight web framework for building the RESTful API.
+   - PostgreSQL (or MongoDB): A reliable relational (or document-based) database for storing user interactions and item metadata.
+   - AWS (or other cloud platform): Cloud infrastructure for scalability and potential integration with managed machine learning services.
+
 4. **Set Up Environment Variables**
     Create a `.env` file in the root directory and add the necessary configuration variables.
     ```sh
@@ -73,3 +90,4 @@ Once the application is running, you can interact with the API using tools like 
 **Example Request:**
 ```sh
 curl -X POST http://127.0.0.1:5000/recommendations -H "Authorization: Bearer your_api_key_here" -d '{"user_id": 12345}'
+
