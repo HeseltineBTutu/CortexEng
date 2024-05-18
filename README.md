@@ -134,8 +134,9 @@ Run **`mypy`** on your code to check for type errors:
 ### Module Documentation
 - Docstrings: Use docstrings to document all modules, classes, methods, and functions. Follow the [PEP 257](https://peps.python.org/pep-0257/) conventions.
 - Comments: Write clear and concise comments to explain non-obvious parts of the code.
-  **Example of a well-documented function:**
+Example of a well-documented function
   ```
+  
   def get_recommendations(user_id: int, num_recommendations: int = 10) -> List[int]:
   """
     Get a list of recommended item IDs for a given user.
