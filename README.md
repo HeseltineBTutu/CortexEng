@@ -125,14 +125,32 @@ We welcome contributions! Follow the guidelines below to contribute to CortexEng
 - **Code Style:** Adhere to [PEP 8](https://peps.python.org/pep-0008/) guidelines for Python code.
 - **Linting:** Use **`pycodestyle`** to check for style issues. Install it via pip:
   `pip install pycodestyle`
-  Run **`Pycodestyle`** on your code to ensure it meets the standards:
+  - Run **`Pycodestyle`** on your code to ensure it meets the standards:
   `pycodestyle your_script.py`
 - **Type Checking:** Use **`mypy`** for static type checking. Install it via pip:
   `pip install mypy`
 Run **`mypy`** on your code to check for type errors:
  `mypy your_script.py`
 ### Module Documentation
-Docstrings: Use docstrings to document all modules, classes, methods, and functions. Follow the PEP 257 conventions.
+- Docstrings: Use docstrings to document all modules, classes, methods, and functions. Follow the [PEP 257](https://peps.python.org/pep-0257/) conventions.
+- Comments: Write clear and concise comments to explain non-obvious parts of the code.
+### Example of a well-documented function:
+`
+def get_recommendations(user_id: int, num_recommendations: int = 10) -> List[int]:
+    """
+    Get a list of recommended item IDs for a given user.
+
+    Args:
+        user_id (int): The unique identifier for the user.
+        num_recommendations (int, optional): The number of recommendations to return. Defaults to 10.
+
+    Returns:
+        List[int]: A list of recommended item IDs.
+    """
+    # Implementation here
+`
+### How to Contribute
+
 
 ### Licence
 This project is licensed under the MIT License.
