@@ -91,12 +91,12 @@ curl -X POST http://127.0.0.1:5000/recommendations -H "Authorization: Bearer you
 ### API Endpoints
 - Method: POST
 - **Parameters:**
-  - `user_id (required)`: The unique identifier for the user.
-  - `num_recommendations (optional)`: The number of recommendations to return (default: 10).
+  - ```user_id (required)```: The unique identifier for the user.
+  - ```num_recommendations (optional)```: The number of recommendations to return (default: 10).
 - **Description:** Returns a list of recommended item IDs for the given user.
 ### Potential Future Endpoints
-- `/add_interaction`: For sending real-time user interaction data.
-- `/items`: For retrieving a list of all available items with metadata.
+- ```/add_interaction```: For sending real-time user interaction data.
+- ```/items```: For retrieving a list of all available items with metadata.
 
 ### Testing
 /items: For retrieving a list of all available items with metadata.
@@ -124,17 +124,18 @@ We welcome contributions! Follow the guidelines below to contribute to CortexEng
 ### Coding Standards
 - **Code Style:** Adhere to [PEP 8](https://peps.python.org/pep-0008/) guidelines for Python code.
 - **Linting:** Use **`pycodestyle`** to check for style issues. Install it via pip:
-  `pip install pycodestyle`
+  ```pip install pycodestyle```
   - Run **`Pycodestyle`** on your code to ensure it meets the standards:
-  `pycodestyle your_script.py`
+  ```pycodestyle your_script.py```
 - **Type Checking:** Use **`mypy`** for static type checking. Install it via pip:
-  `pip install mypy`
+  ```pip install mypy```
 Run **`mypy`** on your code to check for type errors:
- `mypy your_script.py`
+ ```mypy your_script.py```
 ### Module Documentation
 - Docstrings: Use docstrings to document all modules, classes, methods, and functions. Follow the [PEP 257](https://peps.python.org/pep-0257/) conventions.
 - Comments: Write clear and concise comments to explain non-obvious parts of the code.
   **Example of a well-documented function:**
+  ```
   def get_recommendations(user_id: int, num_recommendations: int = 10) -> List[int]:
   """
     Get a list of recommended item IDs for a given user.
@@ -146,38 +147,39 @@ Run **`mypy`** on your code to check for type errors:
     Returns:
         List[int]: A list of recommended item IDs.
   """
-  # Implementation here
-`
+  Implementation here
+  ````
 ### How to Contribute
 1. **Fork the Repository**
    - Click the "Fork" button on the top right corner of the repository page.
 2. **Clone the Forked Repository**
-   `
+   ```
    git clone https://github.com/yourusername/CortexEng.git
    cd CortexEng
-   `
+   ```
 3. **Create a Branch**
-   `
+   ```
    git checkout -b feature-branch-name
-   `
+   ```
 4. **Make Your Changes**
    - Follow the coding standards and documentation guidelines mentioned above.
    - Write or update unit tests for your changes.
 5. **Commit Your Changes**
-   `
+   ```
    git add .
    git commit -m "Brief description of your changes
-   `
-6. **Push to Your Fork**
-   `
+   ```
+7. **Push to Your Fork**
+   ```
    git push origin feature-branch-name
-   `
-7. **Create a Pull Request**
+   ```
+8. **Create a Pull Request**
    - Go to the original repository on GitHub and click the "New Pull Request" button.
    - Provide a clear description of your changes and link any relevant issues.
-
-
-
+### Review Process
+- All contributions will be reviewed by a maintainer.
+- Feedback will be provided if changes are required.
+- Once approved, your changes will be merged into the main branch.
 
 ### Licence
 This project is licensed under the MIT License.
