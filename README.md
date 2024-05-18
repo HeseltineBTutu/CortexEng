@@ -81,6 +81,14 @@ These instructions will help you set up and run the CortexEng recommendation sys
    - PostgreSQL (or MongoDB): A reliable relational (or document-based) database for storing user interactions and item metadata.
    - AWS (or other cloud platform): Cloud infrastructure for scalability and potential integration with managed machine learning services.
 
+### Usage
+Once the application is running, you can interact with the API using tools like `curl` or Postman.
+
+**Example Request:**
+```sh
+curl -X POST http://127.0.0.1:5000/recommendations -H "Authorization: Bearer your_api_key_here" -d '{"user_id": 12345}'
+```
+
 ### Contributing
    We welcome contributions from the community! If you'd like to contribute to CortexEng, please follow these steps:
    1. Fork the repository
@@ -88,15 +96,13 @@ These instructions will help you set up and run the CortexEng recommendation sys
    3. Make your changes and commit them: git commit -m 'Add my feature'
    4. Push to the branch: git push origin my-feature-branch
    5. Submit a pull request
+For more details, please refer to the Contributing Guidelines.
 
-    ```
+### Licence
+This project is licensed under the MIT License.
+
+### Contact
 
 
 
-### Usage
-Once the application is running, you can interact with the API using tools like `curl` or Postman.
-
-**Example Request:**
-```sh
-curl -X POST http://127.0.0.1:5000/recommendations -H "Authorization: Bearer your_api_key_here" -d '{"user_id": 12345}'
 
