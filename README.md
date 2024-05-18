@@ -88,6 +88,16 @@ Once the application is running, you can interact with the API using tools like 
 ```sh
 curl -X POST http://127.0.0.1:5000/recommendations -H "Authorization: Bearer your_api_key_here" -d '{"user_id": 12345}'
 ```
+### API Endpoints
+- Method: POST
+- **Parameters:**
+  - user_id (required): The unique identifier for the user.
+  - num_recommendations (optional): The number of recommendations to return (default: 10).
+- **Description:** Returns a list of recommended item IDs for the given user.
+### Potential Future Endpoints
+- `/add_interaction`: For sending real-time user interaction data.
+- `/items`: For retrieving a list of all available items with metadata.
+
 
 ### Contributing
    We welcome contributions from the community! If you'd like to contribute to CortexEng, please follow these steps:
