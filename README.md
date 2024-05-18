@@ -134,10 +134,9 @@ Run **`mypy`** on your code to check for type errors:
 ### Module Documentation
 - Docstrings: Use docstrings to document all modules, classes, methods, and functions. Follow the [PEP 257](https://peps.python.org/pep-0257/) conventions.
 - Comments: Write clear and concise comments to explain non-obvious parts of the code.
-### Example of a well-documented function:
-`
-def get_recommendations(user_id: int, num_recommendations: int = 10) -> List[int]:
-    """
+  **Example of a well-documented function:**
+  def get_recommendations(user_id: int, num_recommendations: int = 10) -> List[int]:
+  """
     Get a list of recommended item IDs for a given user.
 
     Args:
@@ -146,10 +145,38 @@ def get_recommendations(user_id: int, num_recommendations: int = 10) -> List[int
 
     Returns:
         List[int]: A list of recommended item IDs.
-    """
-    # Implementation here
+  """
+  # Implementation here
 `
 ### How to Contribute
+1. **Fork the Repository**
+   - Click the "Fork" button on the top right corner of the repository page.
+2. **Clone the Forked Repository**
+   `
+   git clone https://github.com/yourusername/CortexEng.git
+   cd CortexEng
+   `
+3. **Create a Branch**
+   `
+   git checkout -b feature-branch-name
+   `
+4. **Make Your Changes**
+   - Follow the coding standards and documentation guidelines mentioned above.
+   - Write or update unit tests for your changes.
+5. **Commit Your Changes**
+   `
+   git add .
+   git commit -m "Brief description of your changes
+   `
+6. **Push to Your Fork**
+   `
+   git push origin feature-branch-name
+   `
+7. **Create a Pull Request**
+   - Go to the original repository on GitHub and click the "New Pull Request" button.
+   - Provide a clear description of your changes and link any relevant issues.
+
+
 
 
 ### Licence
