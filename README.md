@@ -91,14 +91,33 @@ curl -X POST http://127.0.0.1:5000/recommendations -H "Authorization: Bearer you
 ### API Endpoints
 - Method: POST
 - **Parameters:**
-  - user_id (required): The unique identifier for the user.
-  - num_recommendations (optional): The number of recommendations to return (default: 10).
+  - `user_id (required)`: The unique identifier for the user.
+  - `num_recommendations (optional)`: The number of recommendations to return (default: 10).
 - **Description:** Returns a list of recommended item IDs for the given user.
 ### Potential Future Endpoints
 - `/add_interaction`: For sending real-time user interaction data.
 - `/items`: For retrieving a list of all available items with metadata.
 
+### Testing
+/items: For retrieving a list of all available items with metadata.
+`pytest`
 
+### Project Structure
+```
+CortexEng/
+├── app.py                # Flask application entry point
+├── recommendation/       # Recommendation engine code
+│   ├── __init__.py
+│   ├── algorithms.py     # Collaborative filtering algorithms
+│   ├── data.py           # Data loading and preprocessing
+│   ├── utils.py          # Utility functions
+├── tests/                # Unit tests
+│   ├── test_algorithms.py
+│   ├── test_api.py
+├── requirements.txt      # Python dependencies
+├── README.md             # Project documentation
+├── .env                  # Environment variables
+```
 ### Contributing
    We welcome contributions from the community! If you'd like to contribute to CortexEng, please follow these steps:
    1. Fork the repository
@@ -112,6 +131,7 @@ For more details, please refer to the Contributing Guidelines.
 This project is licensed under the MIT License.
 
 ### Contact
+For questions or suggestions, please open an issue in the repository or contact the project lead, Heseltine Tutu, https://x.com/heseltine_tutu
 
 
 
