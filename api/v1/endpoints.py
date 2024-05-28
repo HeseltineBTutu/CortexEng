@@ -10,18 +10,32 @@ from functools import lru_cache
 
 api_v1 = Blueprint('api_v1', __name__, url_prefix='/api/v1')
 
+
 class PredictionRequestSchema(Schema):
     userId = fields.Integer(required=True)
     movieId = fields.Integer(required=True)
 
-    class Meta:
-        unknown = EXCLUDE
+
+class RecommendationRequestSchema(Schema):
+    userId = fields.Integer(required=True, validate=lambda val: val > 0)
+    num_recommendations = fields.Integer(
+        missing=10,
+        validate=lambda val: val > 0
+        )
+
+
+class Meta:
+    unknown = EXCLUDE
+
+
+# Caching the ratings matrix for better performance.
 @lru_cache(maxsize=1)
 def get_ratings_matrix():
     ratings = load_data('data/ratings.csv')
     normalized_ratings = normalize_ratings(ratings)
     ratings_matrix = normalized_ratings.fillna(0).values
     return ratings_matrix
+
 
 @api_v1.route('/predict', methods=['POST'])
 def predict():
@@ -30,19 +44,20 @@ def predict():
         data = PredictionRequestSchema().load(request.json)
     except ValidationError as err:
         return jsonify(err.messages), 400
-    
-
-    user_id = int(request.json['userId'])
-    movie_id = int(request.json['movieId'])
-    
+    user_id = data['userId']
+    movie_id = data['movieId']
     # Check if user_id and movie_id are positive
     if user_id <= 0 or movie_id <= 0:
-        return jsonify({'error': 'User ID and Movie ID must be positive integers'}), 400
+        return jsonify(
+            {'error': 'User ID and Movie ID must be positive integers'}
+            ), 400
 
+    # Input validation (Check if the user ID is valid)
     ratings_matrix = get_ratings_matrix()
 
     # Check if user_id and movie_id are within range
-    if user_id  - 1 >= ratings_matrix.shape[0] or movie_id - 1 >= ratings_matrix.shape[1]:
+    if (user_id - 1 >= ratings_matrix.shape[0] or
+       movie_id - 1 >= ratings_matrix.shape[1]):
         return jsonify({'error': 'User ID or Movie ID is out of bounds'}), 400
 
     model = UserBasedCF(ratings_matrix)
@@ -53,6 +68,85 @@ def predict():
 
     # Ensure the prediction is a float
     if np.isnan(prediction):
-        prediction = None # Handle case where prediction might not be possible
+        prediction = None
 
     return jsonify({'predicted_rating': prediction})
+
+
+@api_v1.route('/recommendations', methods=['POST'])
+def get_recommendations():
+    """
+    Endpoint for getting movie recommendations.
+
+    ___
+    parameters:
+        - name: userId
+          in: body
+          type: integer
+          required: true
+          description: The ID of the user.
+        - name: num_recommendations
+          in : body
+          type: integer
+          required: false
+          description: The number of recommendations to return. Default to 10.
+    responses:
+       200:
+        description: A list of recommended movie IDs.
+        schema:
+            type: object
+            properties:
+                recommendations:
+                    type: array
+                    items:
+                        type: object
+                        poperties:
+                            movieId:
+                                type: integer
+                            predictedRating:
+                                type: number
+      400:
+        description: Invalid user ID or missing data.
+      500:
+        description: Internal server error.
+
+    """
+    # Get user id from request body
+    try:
+        data = RecommendationRequestSchema().load(request.json)
+    except ValidationError as err:
+        return jsonify(err.messages), 400
+    userId = data['userId']
+    # Get number of recommendations (with a default value)
+    num_recommendations = request.json.get('num_recommendations', 10)
+
+    # Input validation (Check if the user ID is valid)
+    ratings_matrix = get_ratings_matrix()
+
+    if userId < 0 or userId >= ratings_matrix.shape[0]:
+        return jsonify({'error': f"Invalid user ID: {userId}"}), 400
+    model = UserBasedCF(ratings_matrix)
+    model.fit()
+
+    # Get all the movie IDs the user has not rated
+    all_movie_ids = range(ratings_matrix.shape[1])
+    # Get indices of rated movies
+    user_rated_movies = ratings_matrix[userId].nonzero()[0]
+    # Filter out rated movies
+    unrated_movie_ids = np.setdiff1d(all_movie_ids, user_rated_movies)
+
+    # Predict ratings for unrated movies
+    predictions = [
+        (movieId, model.predict(userId, movieId))
+        for movieId in unrated_movie_ids
+        ]
+
+    # Sort predictions by predicted rating (descending)
+    predictions.sort(key=lambda x: x[1], reverse=True)
+    # Get top-N recommendations
+    top_recommendations = [
+        {"movieId": int(movieId), "predictedRating": round(score, 2)}
+        for movieId, score in predictions[:num_recommendations]
+        if not np.isnan(score)
+    ]
+    return jsonify({'recommendations': top_recommendations})
