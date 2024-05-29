@@ -4,9 +4,10 @@ from recommendation_engine.collaborative_filtering import UserBasedCF
 from data.loader import load_data
 from data.preprocessing import normalize_ratings
 import numpy as np
+import os
 
 
-from functools import lru_cache
+from functools import lru_cache, wraps
 
 api_v1 = Blueprint('api_v1', __name__, url_prefix='/api/v1')
 
@@ -37,9 +38,20 @@ def get_ratings_matrix():
     return ratings_matrix
 
 
+# API key authentication decorator
+def require_api_key(view_function):
+    @wraps(view_function)
+    def decorated_function(*args, **kwargs):
+        provided_key = request.headers.get('X-API-KEY')
+        if not provided_key or provided_key != os.getenv('API_KEY'):
+            return jsonify({'error': 'Unauthorized'}), 401
+        return view_function(*args, **kwargs)
+    return decorated_function
+
+
 @api_v1.route('/predict', methods=['POST'])
+@require_api_key
 def predict():
-    # ... (API key validation)
     try:
         data = PredictionRequestSchema().load(request.json)
     except ValidationError as err:
@@ -74,6 +86,7 @@ def predict():
 
 
 @api_v1.route('/recommendations', methods=['POST'])
+@require_api_key
 def get_recommendations():
     """
     Endpoint for getting movie recommendations.
