@@ -23,12 +23,18 @@ The application registers the API blueprint and sets up routes for
 OIDC callbacks.
 
 """
-import uuid
-from api.v1.endpoints import api_v1
+
+from flask_sqlalchemy import SQLAlchemy
+from .v1.endpoints import api_v1
 from flask import Flask, g, jsonify
 from flask_oidc import OpenIDConnect
 from okta.client import Client as OktaClient
 from dotenv import find_dotenv, load_dotenv
+from flask_migrate import Migrate
+from models.models import Rating
+from .database import db
+
+import uuid
 import os
 
 
@@ -71,6 +77,11 @@ def create_app():
         app (Flask): The configured Flask application.
     """
     app = Flask(__name__)
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    db.init_app(app)
+
+    migrate = Migrate(app, db)
 
     # Okta Configuration
     app.config["OIDC_CLIENT_SECRETS"] = {
