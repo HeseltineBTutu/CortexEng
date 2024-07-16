@@ -1,0 +1,22 @@
+{
+
+  "scripts": {
+
+    "build:css": "npx tailwindcss -i static/css/styles.css -o static/css/tailwind.css"
+
+  },
+
+  "dependencies": {
+
+    "aos": "^2.3.4",
+
+    "autoprefixer": "^10.4.19",
+
+    "postcss": "^8.4.38",
+
+    "tailwindcss": "^3.4.3"
+
+  }
+
+}
+

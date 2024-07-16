@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico">
+    <title>CortexEng - Sign Up</title>
+    
+    <link rel="stylesheet" href="/static/css/tailwind.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body class="flex items-center justify-center min-h-screen font-century antialiased text-gray-900 bg-gray-100">
+    <div class="signup-container flex flex-col items-center justify-center w-full max-w-4xl rounded-2xl overflow-hidden">
+        <div class="card bg-white rounded-2xl shadow-lg flex overflow-hidden w-full md:w-3/4 lg:w-3/4 border border-gray-300">
+
+            <div class="left-panel bg-blue-500 text-white hidden md:block w-1/2 p-8" style="background-image: url('/static/images/hero-background.jpg'); background-size: cover; background-position: center;">
+                <div class="branding flex flex-col items-center">
+                    <h1 class="text-4xl font-bold tracking-wide">CortexEng</h1>
+                </div>
+                <div class="promo-text mt-16 text-center">
+                    <h2 class="text-3xl font-bold tracking-wide">Personalized Recommendations</h2>
+                    <p class="text-lg mt-4">Discover your next favorite thing with AI-powered recommendations.</p>
+                </div>
+            </div>
+
+            <div class="right-panel bg-white w-full md:w-1/2 p-8">
+                <h2 class="text-2xl font-semibold mb-4 text-center text-gray-800">Create Your Account</h2>
+                <form id="okta-login-form">
+                    <div class="mb-4">
+                        <label for="username" class="block text-gray-700">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required class="form-input mt-1 block w-full text-center rounded-lg border-gray-300">
+                    </div>
+                    <div class="mb-4">
+                        <label for="username" class="block text-gray-700">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required class="form-input mt-1 block w-full text-center rounded-lg border-gray-300">
+                    </div>
+                    <div class="mb-4">
+                        <label for="username" class="block text-gray-700">Email</label>
+                        <input type="text" id="username" class="form-input mt-1 block w-full text-center rounded-lg border-gray-300">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="block text-gray-700">Password</label>
+                        <input type="password" id="password" class="form-input mt-1 block w-full text-center rounded-lg border-gray-300">
+                    </div>
+                    <div class="mb-4">
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required class="form-input mt-1 block w-full text-center rounded-lg border-gray-300">
+                    </div>
+                    
+                    <button type="submit" class="bg-indigo-500 text-white font-bold py-2 px-4 rounded-lg w-full hover:bg-indigo-700 transition duration-300">Sign Up/ Login</button>
+                </form>
+                <p class="mt-4 text-center text-gray-500 text-sm">Already have an account? <a href="#" class="underline text-indigo-500 hover:text-indigo-700">Sign in</a></p>
+                <div id="confirmationMessage" class="hidden text-center text-green-600 mt-4 bg-green-100 border border-green-400 rounded-lg p-4 shadow-md">
+                    Please check your email to confirm your account.
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Progress bar container -->
+    <div class="progress-bar-container mt-4 w-full bg-gray-300 rounded-lg">
+        <div id="progressFill" class="h-2 bg-indigo-500 rounded-lg"></div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@okta/okta-auth-js/dist/okta-auth-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="/static/js/signup.js"></script>
+</body>
+</html>
