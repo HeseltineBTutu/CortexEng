@@ -4,289 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CortexEng - Personalized AI Recommendations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-    
-    :root {
-      --primary-color: #4a90e2;
-      --secondary-color: #50c878;
-      --accent-color: #ff6b6b;
-      --text-color: #333333;
-      --background-color: #f4f7f9;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      color: var(--text-color);
-      background-color: var(--background-color);
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    header {
-      background-color: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: fixed;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo img {
-      height: 40px;
-    }
-
-    .logo span {
-      margin-left: 0.5rem;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--primary-color);
-    }
-
-    nav ul {
-      display: flex;
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav ul li {
-      margin-left: 1.5rem;
-    }
-
-    nav ul li a {
-      color: var(--text-color);
-      text-decoration: none;
-      transition: color 0.3s ease;
-      display: flex;
-      align-items: center;
-      font-weight: 500;
-    }
-
-    nav ul li a:hover {
-      color: var(--primary-color);
-    }
-
-    nav ul li a svg {
-      margin-right: 0.5rem;
-      width: 24px;
-      height: 24px;
-    }
-
-    .btn-primary {
-      background-color: var(--accent-color);
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 25px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-weight: 600;
-    }
-
-    .btn-primary:hover {
-      background-color: #ff4757;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    #home {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding-top: 80px;
-    }
-
-    #home .container {
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-
-    .hero-description {
-      font-size: 1.25rem;
-      max-width: 600px;
-      margin: 0 auto 2rem;
-      opacity: 0.9;
-    }
-
-    #features {
-      background-color: white;
-      padding: 6rem 0;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      color: var(--primary-color);
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .feature-card {
-      background-color: var(--background-color);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-
-    .feature-icon {
-      font-size: 3rem;
-      color: var(--primary-color);
-      margin-bottom: 1rem;
-    }
-
-    .feature-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-    }
-
-    #api-docs {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 6rem 0;
-    }
-
-    .api-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .api-card {
-      background-color: rgba(255,255,255,0.1);
-      padding: 1.5rem;
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
-    }
-
-    pre {
-      background-color: rgba(0,0,0,0.3);
-      padding: 1rem;
-      border-radius: 8px;
-      overflow-x: auto;
-    }
-
-    code {
-      font-family: 'Courier New', Courier, monospace;
-      color: #ecf0f1;
-    }
-
-    #sign-up {
-      background-color: white;
-      padding: 6rem 0;
-    }
-
-    .sign-up-form {
-      background-color: var(--background-color);
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--text-color);
-      font-weight: 600;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-
-    footer {
-      background-color: var(--text-color);
-      color: white;
-      padding: 2rem 0;
-      text-align: center;
-    }
-
-    footer a {
-      color: #ddd;
-      text-decoration: none;
-      margin: 0 0.5rem;
-      transition: color 0.3s ease;
-    }
-
-    footer a:hover {
-      color: var(--accent-color);
-    }
-
-    @media (max-width: 768px) {
-      header nav {
-        display: none;
-      }
-
-      h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero-description {
-        font-size: 1rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/static/css/tailwind.css">
 </head>
-<body>
-  <header>
-    <div class="container">
-      <a href="#" class="logo">
-        <img src="/static/images/logo.png" alt="CortexEng Logo" class="max-h-32">
-        <span>CortexEng</span>
+<body class="font-poppins text-text bg-background">
+  <header class="bg-white shadow-md fixed w-full z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#" class="flex items-center">
+        <img src="/static/images/logo.png" alt="CortexEng Logo" class="h-10">
+        <span class="ml-2 text-2xl font-bold text-primary">CortexEng</span>
       </a>
-      <nav>
-        <ul>
+      <nav class="hidden md:block">
+        <ul class="flex space-x-6">
           <li>
-            <a href="#home">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <a href="#home" class="flex items-center text-text hover:text-primary transition duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
               </svg>
@@ -294,8 +27,8 @@
             </a>
           </li>
           <li>
-            <a href="#features">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#50c878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <a href="#features" class="flex items-center text-text hover:text-primary transition duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
                 <polyline points="2 17 12 22 22 17"></polyline>
                 <polyline points="2 12 12 17 22 12"></polyline>
@@ -304,8 +37,8 @@
             </a>
           </li>
           <li>
-            <a href="#api-docs">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <a href="#api-docs" class="flex items-center text-text hover:text-primary transition duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14 2 14 8 20 8"></polyline>
                 <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -315,50 +48,65 @@
               API Docs
             </a>
           </li>
-          <li><a href="/api/v1/signup" class="btn-primary">Sign Up</a></li>
+          <li>
+            <a href="/api/v1/signup" class="flex items-center text-text hover:text-primary transition duration-300">
+              <svg class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 12C15.3137 12 18 9.31371 18 6C18 2.68629 15.3137 0 12 0C8.68629 0 6 2.68629 6 6C6 9.31371 8.68629 12 12 12ZM12 14C7.58172 14 0 16.0294 0 20.5V24H24V20.5C24 16.0294 16.4183 14 12 14Z"/>
+              </svg>
+              Sign Up
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center text-text hover:text-primary transition duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+              </svg>
+              Sign In
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <section id="home">
-    <div class="container" data-aos="fade-up">
-      <h1>Discover Your Next Favorite Thing</h1>
-      <p class="hero-description">Unleash the power of AI-driven personalized recommendations for movies, products, and more.</p>
-      <a href="/api/v1/signup" class="btn-primary">Get Started Free</a>
+  <section id="home" class="bg-gradient-to-r from-primary to-secondary text-white min-h-screen flex items-center pt-20">
+    <div class="container mx-auto px-4 text-center" data-aos="fade-up">
+      <h1 class="text-5xl font-bold mb-4">Discover Your Next Favorite Thing</h1>
+      <p class="text-xl max-w-2xl mx-auto mb-8 opacity-90">Unleash the power of AI-driven personalized recommendations for movies, products, and more.</p>
+      <a href="/api/v1/signup" class="bg-accent hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-full text-lg transition duration-300 transform hover:-translate-y-1 hover:shadow-lg inline-block">Get Started Free</a>
     </div>
   </section>
 
-  <section id="features">
-    <div class="container">
-      <h2 class="section-title">Powerful Features</h2>
-      <div class="features-grid">
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="feature-icon">🧠</div>
-          <h3>AI-Powered Insights</h3>
+  <section id="features" class="bg-white py-24">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center text-primary mb-12">Powerful Features</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-background p-8 rounded-xl shadow-md transition duration-300 hover:shadow-lg" data-aos="fade-up" data-aos-delay="100">
+          <div class="text-5xl mb-4">🧠</div>
+          <h3 class="text-2xl font-semibold text-primary mb-4">AI-Powered Insights</h3>
           <p>Our advanced algorithms analyze user behavior to provide accurate and personalized recommendations.</p>
         </div>
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="feature-icon">🎯</div>
-          <h3>Precision Targeting</h3>
+        <div class="bg-background p-8 rounded-xl shadow-md transition duration-300 hover:shadow-lg" data-aos="fade-up" data-aos-delay="200">
+          <div class="text-5xl mb-4">🎯</div>
+          <h3 class="text-2xl font-semibold text-primary mb-4">Precision Targeting</h3>
           <p>Deliver tailored content and products to your users, increasing engagement and conversion rates.</p>
         </div>
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="feature-icon">🔌</div>
-          <h3>Seamless Integration</h3>
+        <div class="bg-background p-8 rounded-xl shadow-md transition duration-300 hover:shadow-lg" data-aos="fade-up" data-aos-delay="300">
+          <div class="text-5xl mb-4">🔌</div>
+          <h3 class="text-2xl font-semibold text-primary mb-4">Seamless Integration</h3>
           <p>Easy-to-use API allows you to integrate our recommendation engine into your existing platforms effortlessly.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="api-docs">
-    <div class="container">
-      <h2 class="section-title">API Documentation</h2>
-      <div class="api-grid">
-        <div class="api-card" data-aos="fade-right">
-          <h3>Prediction API</h3>
-          <pre><code>
+  <section id="api-docs" class="bg-primary text-white py-24">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-12">API Documentation</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white bg-opacity-10 p-6 rounded-xl backdrop-filter backdrop-blur-lg" data-aos="fade-right">
+          <h3 class="text-2xl font-semibold mb-4">Prediction API</h3>
+          <pre class="bg-black bg-opacity-30 p-4 rounded-lg overflow-x-auto"><code>
 POST /api/v1/predict
 {
   "userId": 1,
@@ -372,9 +120,9 @@ Response:
 }
           </code></pre>
         </div>
-        <div class="api-card" data-aos="fade-left">
-          <h3>Recommendations API</h3>
-          <pre><code>
+        <div class="bg-white bg-opacity-10 p-6 rounded-xl backdrop-filter backdrop-blur-lg" data-aos="fade-left">
+          <h3 class="text-2xl font-semibold mb-4">Recommendations API</h3>
+          <pre class="bg-black bg-opacity-30 p-4 rounded-lg overflow-x-auto"><code>
 POST /api/v1/recommendations
 {
   "userId": 1,
@@ -396,30 +144,30 @@ Response:
     </div>
   </section>
 
-  <section id="sign-up">
-    <div class="container">
-      <h2 class="section-title">Get Started Today</h2>
-      <form class="sign-up-form">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="you@example.com" required>
+  <section id="sign-up" class="bg-white py-24">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center text-primary mb-12">Get Started Today</h2>
+      <form class="max-w-md mx-auto bg-background p-8 rounded-xl shadow-md">
+        <div class="mb-6">
+          <label for="email" class="block text-sm font-semibold mb-2">Email</label>
+          <input type="email" id="email" placeholder="you@example.com" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Choose a strong password" required>
+        <div class="mb-6">
+          <label for="password" class="block text-sm font-semibold mb-2">Password</label>
+          <input type="password" id="password" placeholder="Choose a strong password" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
         </div>
-        <button type="submit" class="btn-primary">Create Free Account</button>
+        <button type="submit" class="w-full bg-accent hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-full text-lg transition duration-300">Create Free Account</button>
       </form>
     </div>
   </section>
 
-  <footer>
-    <div class="container">
-      <p>© 2024 CortexEng. All rights reserved.</p>
-      <div>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Contact Us</a>
+  <footer class="bg-text text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+      <p class="mb-4">© 2024 CortexEng. All rights reserved.</p>
+      <div class="space-x-4">
+        <a href="#" class="text-gray-300 hover:text-accent transition duration-300">Privacy Policy</a>
+        <a href="#" class="text-gray-300 hover:text-accent transition duration-300">Terms of Service</a>
+        <a href="#" class="text-gray-300 hover:text-accent transition duration-300">Contact Us</a>
       </div>
     </div>
   </footer>
