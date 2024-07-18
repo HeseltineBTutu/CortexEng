@@ -144,7 +144,10 @@ class Rating(db.Model):
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
-    __table_args__ = {'schema': 'public'}
+    __table_args__ = (
+        db.UniqueConstraint('email', name='uq_users_email'),
+        {'schema': 'public'}
+    )
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
@@ -157,7 +160,10 @@ class User(UserMixin, db.Model):
     confirmed = db.Column(db.Boolean, default=False)
     confirmation_token = db.Column(db.String(100), nullable=True)
     confirmed_on = db.Column(db.DateTime, nullable=True)
+    bio = db.Column(db.String(500), nullable=True)
+    avatar_url = db.Column(db.String(255), nullable=True) 
     ratings = db.relationship('Rating', back_populates='user', lazy=True)
+    
 
     def __repr__(self):
         return f"<User (id={self.id}, email={self.email})>"
